@@ -1,2 +1,2 @@
 # docker-android
-Docker image for building Android Release builds.
+Docker image for building verifiable Android Release builds.
