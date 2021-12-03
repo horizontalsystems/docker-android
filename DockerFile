@@ -13,13 +13,13 @@ RUN apt-get update && \
 ENV ANDROID_HOME /opt/android-sdk
 RUN mkdir -p /opt/android-sdk/cmdline-tools && \
   cd /opt/android-sdk/cmdline-tools && \
-  wget -q https://dl.google.com/android/repository/commandlinetools-linux-6514223_latest.zip && \
+  wget -q https://dl.google.com/android/repository/commandlinetools-linux-7583922_latest.zip && \
   unzip *.zip && \
   rm -f *.zip && \
   ln -s /opt/android-sdk/cmdline-tools/tools/bin/sdkmanager /usr/bin/sdkmanager && \
   yes | sdkmanager --licenses && \
-  sdkmanager "build-tools;29.0.3" && \
-  ln -s /opt/android-sdk/build-tools/29.0.3/apksigner /usr/bin/apksigner && \
+  sdkmanager "build-tools;30.0.2" && \
+  ln -s /opt/android-sdk/build-tools/30.0.2/apksigner /usr/bin/apksigner && \
   wget https://raw.githubusercontent.com/iBotPeaches/Apktool/master/scripts/linux/apktool && \
   wget https://bitbucket.org/iBotPeaches/apktool/downloads/apktool_2.4.1.jar && \
   mv *.jar apktool.jar && \
