@@ -1,9 +1,10 @@
 FROM ubuntu:20.04
 
+ARG DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && \
   apt-get install -y wget \
-    openjdk-8-jre-headless=8u275-b01-0ubuntu1~20.04 \
-    openjdk-8-jdk-headless=8u275-b01-0ubuntu1~20.04 \
+    openjdk-11-jre-headless \
+    openjdk-11-jdk-headless \
     git unzip && \
   rm -rf /var/lib/apt/lists/* && \
   apt-get autoremove -y && \
@@ -16,7 +17,7 @@ RUN mkdir -p /opt/android-sdk/cmdline-tools && \
   wget -q https://dl.google.com/android/repository/commandlinetools-linux-7583922_latest.zip && \
   unzip *.zip && \
   rm -f *.zip && \
-  ln -s /opt/android-sdk/cmdline-tools/tools/bin/sdkmanager /usr/bin/sdkmanager && \
+  ln -s /opt/android-sdk/cmdline-tools/cmdline-tools/bin/sdkmanager /usr/bin/sdkmanager && \
   yes | sdkmanager --licenses && \
   sdkmanager "build-tools;30.0.2" && \
   ln -s /opt/android-sdk/build-tools/30.0.2/apksigner /usr/bin/apksigner && \
@@ -26,4 +27,4 @@ RUN mkdir -p /opt/android-sdk/cmdline-tools && \
   mv apktool apktool.jar /usr/local/bin/ && \
   chmod +x /usr/local/bin/apktool /usr/local/bin/apktool.jar
 # following https://github.com/Microsoft/vscode-arduino/issues/644#issuecomment-415329398
-RUN rm /etc/java-8-openjdk/accessibility.properties
+RUN rm /etc/java-11-openjdk/accessibility.properties
